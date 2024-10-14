@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import axios from "axios";
 import { useSession } from "next-auth/react";
@@ -50,7 +50,7 @@ const EditUserPage = () => {
   const { reset } = form; // Destructure reset for easier usage
 
   // Fetch user details when the component loads
-  const fetchUser = async () => {
+  const fetchUser = useCallback(async () => {
     if (!session?.accessToken || !id) return;
 
     try {
@@ -72,7 +72,7 @@ const EditUserPage = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [session?.accessToken, id, reset]);
 
   useEffect(() => {
     fetchUser();

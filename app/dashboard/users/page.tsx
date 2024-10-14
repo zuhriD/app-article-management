@@ -2,7 +2,7 @@
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import DataTable, { TableColumn } from "react-data-table-component";
 
 interface ListUsers {
@@ -21,7 +21,7 @@ const UsersPage = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const { data: session } = useSession();
 
-  const fetchUsers = async () => {
+  const fetchUsers = useCallback( async () => {
     if (!session?.accessToken) {
       console.log("No access token found, skipping fetch");
       setLoading(false);
@@ -48,7 +48,7 @@ const UsersPage = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [session?.accessToken]);
 
   const handleDelete = async (id: string, accessToken: string | undefined) => {
     if (!accessToken) {

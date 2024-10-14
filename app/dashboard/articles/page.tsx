@@ -2,7 +2,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
 import { useArticle } from "@/context/ArticleContext";
@@ -49,7 +49,7 @@ export default function ArticlePage() {
   const { setSelectedArticle } = useArticle(); // Get function to set article in context
   const router = useRouter();
 
-  const fetchArticles = async (page: number) => {
+  const fetchArticles = useCallback(async (page: number) => {
     if (!session?.accessToken) {
       setLoading(false);
       return;
@@ -66,12 +66,9 @@ export default function ArticlePage() {
       );
 
       const articlesData = response.data.data;
-      const totalData = response.data.totalData;
-      const limit = response.data.limit;
 
       if (Array.isArray(articlesData)) {
         setArticles(articlesData);
-        setTotalPages(Math.ceil(totalData / limit));
       } else {
         console.error("Expected articles to be an array but got:", articlesData);
       }
@@ -80,7 +77,7 @@ export default function ArticlePage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [session?.accessToken]);
 
   useEffect(() => {
     fetchArticles(currentPage);

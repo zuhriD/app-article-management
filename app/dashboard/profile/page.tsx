@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import axios from 'axios';
 
@@ -14,7 +14,7 @@ const ProfilePage = () => {
     const {data: session} = useSession();
     const [user, setUser] = React.useState<User | null>(null);
 
-    const fetchUser = async () => {
+    const fetchUser = useCallback(async () => {
         if (!session?.accessToken) return;
 
         try {
@@ -29,7 +29,7 @@ const ProfilePage = () => {
         } catch (error) {
             console.error("An unexpected error occurred:", error);
         }
-    }
+    }, [session?.accessToken]);
 
     useEffect(() => {
         fetchUser();
