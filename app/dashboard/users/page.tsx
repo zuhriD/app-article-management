@@ -30,7 +30,7 @@ const UsersPage = () => {
 
     try {
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/users`,
+        `http://103.196.153.154:8000/api/users`,
         {
           headers: {
             Authorization: `Bearer ${session.accessToken}`,
@@ -62,7 +62,7 @@ const UsersPage = () => {
     if (!confirmed) return; // If the user clicks "Cancel", abort the deletion
 
     try {
-      await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/users/${id}`, {
+      await axios.delete(`http://103.196.153.154:8000/api/users/${id}`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },

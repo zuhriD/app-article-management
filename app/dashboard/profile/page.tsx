@@ -18,7 +18,7 @@ const ProfilePage = () => {
         if (!session?.accessToken) return;
 
         try {
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/me`, {
+            const response = await axios.get(`http://103.196.153.154:8000/api/auth/me`, {
                 headers: {
                     Authorization: `Bearer ${session.accessToken}`,
                 },

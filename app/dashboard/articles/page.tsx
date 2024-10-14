@@ -57,7 +57,7 @@ export default function ArticlePage() {
 
     try {
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/articles?page=${page}`, 
+        `http://103.196.153.154:8000/api/articles?page=${page}`, 
         {
           headers: {
             Authorization: `Bearer ${session.accessToken}`,

@@ -55,7 +55,7 @@ const EditUserPage = () => {
 
     try {
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/users/${id}`,
+        `http://103.196.153.154:8000/api/users/${id}`,
         {
           headers: {
             Authorization: `Bearer ${session.accessToken}`,
@@ -84,7 +84,7 @@ const EditUserPage = () => {
 
     try {
       await axios.put(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/users/${id}`,
+        `http://103.196.153.154:8000/api/users/${id}`,
         data,
         {
           headers: {
