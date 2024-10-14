@@ -3,7 +3,7 @@ import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
     // Check if the user is authenticated by checking for 'authjs.session-token'
-    const isAuthenticated = !!request.cookies.get('authjs.session-token');
+    const isAuthenticated = !!request.cookies.get('__Secure-authjs.session-token');
 
     console.log('isAuthenticated:', isAuthenticated);
 
