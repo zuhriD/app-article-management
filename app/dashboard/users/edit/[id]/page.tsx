@@ -76,7 +76,7 @@ const EditUserPage = () => {
 
   useEffect(() => {
     fetchUser();
-  }, [session?.accessToken, id]);
+  }, [fetchUser, id]);
 
   // Handle form submission
   const onSubmit: SubmitHandler<UserFormData> = async (data) => {

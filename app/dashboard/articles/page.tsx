@@ -84,7 +84,7 @@ export default function ArticlePage() {
 
   useEffect(() => {
     fetchArticles(currentPage);
-  }, [currentPage, session?.accessToken]);
+  }, [currentPage, fetchArticles]);
 
 
   if (loading) {

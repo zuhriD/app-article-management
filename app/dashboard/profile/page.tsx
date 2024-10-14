@@ -33,7 +33,7 @@ const ProfilePage = () => {
 
     useEffect(() => {
         fetchUser();
-    }, [session?.accessToken]);
+    }, [fetchUser]);
 
 
 

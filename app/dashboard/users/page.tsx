@@ -78,7 +78,7 @@ const UsersPage = () => {
 
   useEffect(() => {
     fetchUsers();
-  }, [session?.accessToken]);
+  }, [fetchUsers]);
 
   const columns: TableColumn<UserRow>[] = [
     { name: "ID", selector: (row) => row.id, sortable: true },
