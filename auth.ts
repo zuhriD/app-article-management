@@ -21,7 +21,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 }
                 try {
                     // Make API call to authenticate user using Axios
-                    const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`, {
+                    const response = await axios.post(`http://103.196.153.154:8000/api/auth/login`, {
                         username: credentials.username,
                         password: credentials.password,
                     });
@@ -30,7 +30,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                     const { access, refresh } = response.data;
 
                     // Use the access token to fetch user details
-                    const userResponse = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/me`, {
+                    const userResponse = await axios.get(`http://103.196.153.154:8000/api/auth/me`, {
                         headers: {
                             Authorization: `Bearer ${access}`, // Set the Authorization header
                         },
